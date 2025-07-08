@@ -26,6 +26,13 @@ public:
 	bool bRotateY;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "RotationValue")
 	bool bRotateZ;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ReverseTimer")
+	bool bReverseTimer;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ReverseTimer")
+	float ReverseTime;
+
+	UFUNCTION(BlueprintCallable, Category = "Rotation")
+	void ReverseRotation();
 
 protected:
 	virtual void BeginPlay() override;
@@ -33,5 +40,6 @@ protected:
 
 private:
 	FRotator Rotation;
+	FTimerHandle ReverseRotationTimerHandle;
 
 };

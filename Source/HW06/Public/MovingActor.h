@@ -10,8 +10,8 @@ UCLASS()
 class HW06_API AMovingActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	AMovingActor();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Component")
@@ -23,25 +23,28 @@ public:
 	float MoveSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveValue")
 	float MaxRange;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MoveValue")
-	FVector StartLocation;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveValue")
 	bool bMoveX;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveValue")
 	bool bMoveY;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveValue")
 	bool bMoveZ;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "MoveTimer")
+	bool bMoveTimer;
 
-	
-	
+	UFUNCTION(BlueprintCallable, Category = "Move")
+	void ChangeRandomSpeed();
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-
 private:
 	FVector Direction;
-
+	FTimerHandle ChangeSpeedTimerHandle;
+	FVector StartLocation;
+	FVector TargetLocation;
+	float MovingDistance;
 };
